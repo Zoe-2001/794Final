@@ -7,6 +7,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 from model.cnn_model import BaseModel
+import model.loss as HSVLoss
 from data.dataset import Dataset_CIFAR
 from data.dataset import Dataset_ImageNet
 from config import cfg
@@ -81,7 +82,7 @@ def train(model, optimizer, epochs):
             # calculate the loss with function: prediction and labels as input
             mse_loss = criterion(prediction, labels)
 
-            hsv_loss_value = model.loss.hsv_loss(prediction, labels)
+            hsv_loss_value = HSVLoss.hsv_loss(prediction, labels)
             # Combine HSV loss with MSE loss
             loss = hsv_loss_value + mse_loss
 
